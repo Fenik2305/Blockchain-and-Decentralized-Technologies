@@ -1,23 +1,21 @@
-from math import *
-import random
+from random import *
 import time
 
-# Перебирает все ключи в заданом диапазоне [0, key_range) пока не не будет найдено значение равное key
-# Возвращает время в мс
-def broodforce(key_range: int, key: int):
-    start_time = time.time()
-    for k in range(key_range):
-        if k == key:
-            print(f"Найден ключ: {k}")
-            return round((time.time() - start_time) * 1000)
+def exhaustive_search(byte):
+    random_key = randint(0, 2 ** byte)
+    begin = time.time()
+    for i in range(2 ** byte):
+        if i == random_key:
+            end = time.time()
+            print("successfully found the key", i)
+            print(round((end - begin) * 1000))
 
-if __name__ == "__main__":
-    size = [2 ** x for x in range(int(log2(8)), int(log2(4096)) + 1)]
-    for s in size:
-        print(f"Количество вариантов {s}-битных ключей: {2 ** s}")
+size = [2 ** x for x in range(3, 13)]
+print(size)
+for x in size:
+    print(f"{x}-byte: {2 ** x}")
+print()
 
-    for s in size:
-        key_range = 2 ** s
-        key = random.randint(0, key_range - 1)
-        print(f"Случайный {s}-битный ключ: {key}")
-        print(f"Время перебора: {broodforce(key_range, key)} мс.")
+for byte in size:
+    print('y')
+    exhaustive_search(byte)
