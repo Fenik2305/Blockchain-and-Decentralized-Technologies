@@ -7,8 +7,8 @@ def exhaustive_search(byte):
     for i in range(2 ** byte):
         if i == random_key:
             end = time.time()
-            print("successfully found the key", i)
-            print(round((end - begin) * 1000))
+            print(f"successfully found the {byte}-byte key", i)
+            print('time: ', (end - begin) * 1000)
 
 size = [2 ** x for x in range(3, 13)]
 print(size)
@@ -17,5 +17,4 @@ for x in size:
 print()
 
 for byte in size:
-    print('y')
     exhaustive_search(byte)
